@@ -4,8 +4,7 @@
  * @version 1.0
  */
 
-package leetcode;
-
+import utils.*;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
