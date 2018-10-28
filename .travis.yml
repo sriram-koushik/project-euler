@@ -3,5 +3,9 @@ language: java
 before_install:
  - chmod +x gradlew
 
+script: "sbt clean coverage test"
+
+after_success: "sbt coveralls"
+
 jdk:
 - oraclejdk8
