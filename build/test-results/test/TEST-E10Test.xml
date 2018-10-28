@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="E10Test" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-10-28T22:51:20" hostname="LAPTOP-UV6CEVP2" time="0.011">
+<testsuite name="E10Test" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-10-28T23:42:48" hostname="LAPTOP-UV6CEVP2" time="0.02">
   <properties/>
-  <testcase name="testSumBoundException1" classname="E10Test" time="0.009"/>
-  <testcase name="test1" classname="E10Test" time="0.0"/>
-  <testcase name="testSumBoundException" classname="E10Test" time="0.001"/>
+  <testcase name="testSumBoundException1" classname="E10Test" time="0.014"/>
+  <testcase name="test1" classname="E10Test" time="0.004"/>
+  <testcase name="testSumBoundException" classname="E10Test" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

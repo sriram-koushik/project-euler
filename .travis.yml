@@ -3,9 +3,10 @@ language: java
 before_install:
  - chmod +x gradlew
 
-script: "sbt clean coverage test"
-
-after_success: "sbt coveralls"
+script: ./gradlew build jacocoTestReport
 
 jdk:
 - oraclejdk8
+
+after_success:
+- ./gradlew jacocoRootReport coveralls

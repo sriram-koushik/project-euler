@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PrimeUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">euler</a> &gt; <a href="index.source.html" class="el_package">utils</a> &gt; <span class="el_source">PrimeUtils.java</span></div><h1>PrimeUtils.java</h1><pre class="source lang-java linenums">package utils;
+
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.List;
+
+/**
+ * Class 'PrimeUtils' is a Utility class. 
+ * @author Sriram
+ * @version 1.0
+ * This provides necessary utility functions for prime number computations
+ */
+public class PrimeUtils {
+    //Upper bound until which prime numbers are computed
+    private int upperBound; 
+    //List to store the prime numbers until the upper bound value
+    //Reason why we persist the numbers is we can use the numbers for other operations such as lookup
+    private List&lt;Integer&gt; primeList;    
+    /*
+     * A sieve which denotes whether the number represented by the index is prime or not
+     * for 'i' where 0&lt;= i &lt; sieve.length i is prime if and only if sieve[i] = true
+     */
+    //We use a BitSet as opposed to a boolean array to make the program meory efficient
+    BitSet sieve;
+    /**
+     * Constructor for PrimeUtils
+     * @param bound the highest value until which prime numbers are computed
+     */
+    public PrimeUtils(int bound)
+<span class="fc" id="L30">    {</span>
+        /*
+         * If the total upper bound is 0 or above, we create the list accordingly
+         * If the bound is less than 0, we set the bound to -1 so that that no elements are created in createList()
+         */
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        if(bound&lt;0)</span>
+        {
+<span class="nc" id="L37">            bound = -1;</span>
+        }
+<span class="fc" id="L39">        upperBound = bound;</span>
+        //Function call to create the list of prime numbers
+<span class="fc" id="L41">        createList();</span>
+<span class="fc" id="L42">    }</span>
+    /**
+     * Method sumRange is to calculate the sum of prime numbers until the given value
+     * @param bound
+     * @return
+     * @throws Exception 
+     */
+    public long sumRange(int bound)
+    {
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">        if(bound&gt;upperBound)</span>
+        {
+            /*
+             * We have stored numbers only until 'upperbound', but we are attempting
+             * to compute sum until a number greater than 'upperbound'
+             */
+<span class="fc" id="L57">            throw new IllegalArgumentException(&quot;Prime numbers computed only until &quot;+upperBound+&quot;, can't find sum until &quot;+bound); </span>
+        }
+        //The sum might exceed the Integer range, hence using a long variable
+<span class="nc" id="L60">        long sum = 0;</span>
+        //Compute sum until the given bound
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        for(int primeNumber:primeList)</span>
+        {
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if(primeNumber&gt;=bound)</span>
+<span class="nc" id="L65">                break;</span>
+            else
+<span class="nc" id="L67">                sum+=primeNumber;</span>
+<span class="nc" id="L68">        }</span>
+<span class="nc" id="L69">        return sum;</span>
+    }
+    /**
+     * Check if a given number is prime
+     * @param num is the input number to be tested
+     * @return boolean true if prime and false if not
+     */
+    boolean isPrime(int num)
+    {
+<span class="nc bnc" id="L78" title="All 4 branches missed.">        if(num&lt;0||num&gt;sieve.length())</span>
+        {
+            /*
+             * We are trying to check if a number outside of the sieve range is prime  
+             */
+<span class="nc" id="L83">            throw new IllegalArgumentException(&quot;Prime numbers computed only until &quot;+upperBound+&quot;, can't check if number &quot;+num+&quot; is prime&quot;); </span>
+        }
+<span class="nc" id="L85">        return sieve.get(num); </span>
+    }
+    /**
+     * A private method to create the list
+     */
+    private void createList()
+    {
+        //Initialize list and sieve
+        try{
+<span class="fc" id="L94">            primeList = new ArrayList&lt;Integer&gt;();</span>
+<span class="fc" id="L95">            sieve = new BitSet(upperBound+1);</span>
+        }
+<span class="nc" id="L97">        catch(OutOfMemoryError er)</span>
+        {
+<span class="nc" id="L99">            throw new OutOfMemoryError(&quot;The input bound is very large. Please provide a lower number&quot;);</span>
+<span class="fc" id="L100">        }</span>
+        //We know that there are no prime numbers less than a value 1, so we return immediately
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">        if(sieve.size()&lt;=1)</span>
+<span class="nc" id="L103">            return;</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        for(int i=0;i&lt;sieve.size();i++)</span>
+<span class="fc" id="L105">            sieve.set(i, true);</span>
+        //We know numbers 0 and 1 are not prime, hence setting them to false
+<span class="fc" id="L107">        sieve.set(0, false);</span>
+<span class="fc" id="L108">        sieve.set(1, false);</span>
+        //We perform Sieve of Eratosthenes to fill the sieve(https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
+        //We check until the factor product is less than the provided upper bound
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        for(int num = 2; num*num &lt;=upperBound; num++) </span>
+        { 
+<span class="fc bfc" id="L113" title="All 2 branches covered.">            if(sieve.get(num) == true) </span>
+            { 
+                //We mark all the multiples of number 'num' to false because they are not prime
+                //Example: For num = 3,6,9... are marked as false
+<span class="fc bfc" id="L117" title="All 2 branches covered.">                for(int multiple = num*2; multiple &lt;= upperBound; multiple+=num) </span>
+                {
+<span class="fc" id="L119">                    sieve.set(multiple, false); </span>
+                }
+            } 
+        }
+        //Add all the prime numbers to a list
+<span class="fc bfc" id="L124" title="All 2 branches covered.">        for(int i=0;i&lt;sieve.size();i++)</span>
+        {
+<span class="fc bfc" id="L126" title="All 2 branches covered.">            if(sieve.get(i)==true)</span>
+<span class="fc" id="L127">                primeList.add(i);</span>
+        }
+<span class="fc" id="L129">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

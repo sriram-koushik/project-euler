@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>E41.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">euler</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">E41.java</span></div><h1>E41.java</h1><pre class="source lang-java linenums">/**
+ * Solution for problem #41 (https://projecteuler.net/problem=41)
+ * @author Sriram
+ * @version 1.0
+ */
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ *Class E41 is the class which consists of the main method
+ */
+<span class="nc" id="L14">class E41 {</span>
+    /**
+     * Main static method for the class
+     * @param args Command line arguments for the main method
+     */
+    public static void main(String[] args)
+    {
+<span class="nc" id="L21">        long startTime = System.currentTimeMillis();</span>
+        /* We initialize the longestPDP to be -1 (clearly not a PDP) in case pan digital primes never exists
+         * We also know that the largest possible Pan Digital number is 987654321 which fits in the INT range
+         * Hence longestPDP is an integer number and we don't have to check anything else
+         */
+<span class="nc" id="L26">        int longestPDP = -1;</span>
+        try 
+        {
+            //Create a list of all digits 1-9
+<span class="nc" id="L30">            final List&lt;Integer&gt; digits = new ArrayList&lt;Integer&gt;(Arrays.asList(9,8,7,6,5,4,3,2,1));</span>
+            /*
+             * We are going to create all the permutations of lengths from 9 to 1,
+             * from the 'digits' list.
+             * We are starting from 9 because we need the longest pan digital number, so we can stop searching when we get one
+             */
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            for(int length = 9;length&gt;=1;length--)</span>
+            {
+                //The 'perms' list contains all the permutations of length 
+<span class="nc" id="L39">                List&lt;Integer&gt; perms = new ArrayList&lt;Integer&gt;();</span>
+                /*
+                 * permutations() is called which will create a list of permutations for a
+                 * a sublist of a given size.
+                 * digits.subList(digits.size()-length, digits.size()) is a very cool hack:
+                 * The digits is already ordered in non-increasing way. So for every iteration in the loop,
+                 * we send a sublist after removing the digits.size()-length elements from the front
+                 */
+<span class="nc" id="L47">                permutations(perms, new ArrayList&lt;Integer&gt;(), digits.subList(digits.size()-length, digits.size()));</span>
+                //'perms' now contain all pan-digital permutations of size length
+<span class="nc bnc" id="L49" title="All 2 branches missed.">                for(int perm:perms)</span>
+                {
+<span class="nc bnc" id="L51" title="All 2 branches missed.">                    if(isPrimeNumber(perm))</span>
+                    {
+<span class="nc" id="L53">                        longestPDP = perm;</span>
+<span class="nc" id="L54">                        break;</span>
+                    }
+<span class="nc" id="L56">                }</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">                if(longestPDP!=-1)</span>
+<span class="nc" id="L58">                    break;</span>
+            }
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            if(longestPDP!=-1)</span>
+<span class="nc" id="L61">                System.out.println(&quot;The longest pan digital number is &quot;+longestPDP);</span>
+            else
+<span class="nc" id="L63">                System.out.println(&quot;There's no pandigital numbers which are prime&quot;);</span>
+        } 
+<span class="nc" id="L65">        catch (Exception e) </span>
+        {
+<span class="nc" id="L67">            System.out.println(&quot;There's an error in the processing&quot; + e.getStackTrace());</span>
+<span class="nc" id="L68">        }</span>
+<span class="nc" id="L69">        long endTime = System.currentTimeMillis();</span>
+<span class="nc" id="L70">        System.out.println(&quot;This program took &quot;+(endTime-startTime)+&quot;ms to run&quot;);</span>
+<span class="nc" id="L71">    }</span>
+    private static boolean isPrimeNumber(int num)
+    {
+        //It is enough we check if there are factors for a number until the Square Root of that number
+        /*
+         * We are checking for every number instead of using a sieve because this is far efficient than creating a sieve for 987654321 numbers
+         * Here we will compute this only for a maximum of 9! = 362880 numbers
+         */
+<span class="nc" id="L79">        int boundary = (int)Math.floor(Math.sqrt(num));</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">        if (num &lt;= 1) </span>
+        {
+<span class="nc" id="L82">            return false;</span>
+        }
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        if (num == 2) </span>
+        {
+<span class="nc" id="L86">            return true;</span>
+        }
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        for (int i = 2; i &lt;= boundary; ++i)</span>
+        {
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            if (num % i == 0) </span>
+<span class="nc" id="L91">                return false;</span>
+        }
+<span class="nc" id="L93">        return true;</span>
+    }
+    private static void permutations(List&lt;Integer&gt; retList, List&lt;Integer&gt; tempDigits, List&lt;Integer&gt; digits)
+    {
+       /*
+        * We generate a list of pan-digital permutations,
+        * we push permutation once the required size has been attained,
+        * by combining the list and converting it to a single number
+        */
+        //Base condition is when required size is achieved
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        if(tempDigits.size() == digits.size())</span>
+        {
+<span class="nc" id="L105">           StringBuilder permFormation = new StringBuilder();</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">           for(int i:tempDigits)</span>
+           {
+<span class="nc" id="L108">               permFormation.append(i+&quot;&quot;);</span>
+<span class="nc" id="L109">           }</span>
+<span class="nc" id="L110">           retList.add(Integer.parseInt(permFormation.toString()));</span>
+<span class="nc" id="L111">        } </span>
+        else
+        {
+<span class="nc bnc" id="L114" title="All 2 branches missed.">           for(int i = 0; i &lt; digits.size(); i++)</span>
+           { 
+              //This is to avoid duplicates as we need only one of every digit
+<span class="nc bnc" id="L117" title="All 2 branches missed.">              if(tempDigits.contains(digits.get(i))) </span>
+<span class="nc" id="L118">                  continue; </span>
+              //We add the number if it's not present already
+<span class="nc" id="L120">              tempDigits.add(digits.get(i));</span>
+<span class="nc" id="L121">              permutations(retList, tempDigits, digits);</span>
+              //Recursively we remove the last element to substitute with a different element in the next recursive for loop
+<span class="nc" id="L123">              tempDigits.remove(tempDigits.size() - 1);</span>
+           }
+        }
+<span class="nc" id="L126">     } </span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

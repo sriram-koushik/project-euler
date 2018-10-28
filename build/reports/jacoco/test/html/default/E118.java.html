@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>E118.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">euler</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">E118.java</span></div><h1>E118.java</h1><pre class="source lang-java linenums">/**
+ * Solution for problem #118 (https://projecteuler.net/problem=118)
+ * @author Sriram
+ * @version 1.0
+ */
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ *Class E41 is the class which consists of the main method
+ */
+<span class="nc" id="L14">class E118 {</span>
+    /**
+     * Main static method for the class
+     * @param args Command line arguments for the main method
+     */
+    public static void main(String[] args)
+    {
+<span class="nc" id="L21">        long startTime = System.currentTimeMillis();</span>
+        try 
+        {
+            /*
+             * Create a list of all digits 1-9. The order is important because we are going
+             * to consider only increasing permutations to avoid duplicates
+             */
+<span class="nc" id="L28">            final List&lt;Integer&gt; digits = new ArrayList&lt;Integer&gt;(Arrays.asList(1,2,3,4,5,6,7,8,9));</span>
+            /*
+             * Final return count is stored here. 
+             * Since the count of all 10 digit pandigital numbers equals 10! (3628800),
+             * we can store it in an Integer
+             */
+<span class="nc" id="L34">            int retCount = 0;</span>
+            //The 'perms' list will contain all the permutations of the given length 
+<span class="nc" id="L36">            List&lt;Integer&gt; perms = new ArrayList&lt;Integer&gt;();</span>
+<span class="nc" id="L37">            permutations(perms, new ArrayList&lt;Integer&gt;(), digits);</span>
+            //'perms' now contains all pan-digital permutations of length 10
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            for(int perm:perms)</span>
+            {
+                //previous value sent as argument is set to 0 because pandigital numbers
+                //can consist of values above 1, so 0 guarantees this check will hold initially
+<span class="nc" id="L43">                retCount+=splitAndCheck(String.valueOf(perm),0,0);</span>
+<span class="nc" id="L44">            }</span>
+<span class="nc" id="L45">            System.out.println(&quot;The total number of sets that can be formed by combining digits which are prime numbers: &quot;+ retCount);</span>
+        } 
+<span class="nc" id="L47">        catch (Exception e) </span>
+        {
+<span class="nc" id="L49">            System.out.println(&quot;There's an error in the processing&quot; + e.getStackTrace());</span>
+<span class="nc" id="L50">        }</span>
+<span class="nc" id="L51">        long endTime = System.currentTimeMillis();</span>
+<span class="nc" id="L52">        System.out.println(&quot;This program took &quot;+(endTime-startTime)+&quot;ms to run&quot;);</span>
+<span class="nc" id="L53">    }</span>
+    
+    /**
+     * isPrimeNumber checks if a given number is prime
+     * @param num the Integer to check
+     * @return boolean true if argument is prime else return false
+     */
+    private static boolean isPrimeNumber(int num)
+    {
+        //It is enough we check if there are factors for a number until the Square Root of that number
+        /*
+         * We are checking for every number instead of using a sieve because this is far efficient than creating a sieve for 987654321 numbers
+         * Here we will compute this only for a maximum of 9! = 362880 numbers
+         */
+<span class="nc" id="L67">        int boundary = (int)Math.floor(Math.sqrt(num));</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        if (num &lt;= 1) </span>
+        {
+<span class="nc" id="L70">            return false;</span>
+        }
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        if (num == 2) </span>
+        {
+<span class="nc" id="L74">            return true;</span>
+        }
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        for (int i = 2; i &lt;= boundary; ++i)</span>
+        {
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (num % i == 0) </span>
+<span class="nc" id="L79">                return false;</span>
+        }
+<span class="nc" id="L81">        return true;</span>
+    }
+    
+    /**
+     * perumatations is method to find all possible permutations of a give list of integers
+     * @param retList is a list which returns a combination of the returned various permutations
+     * @param tempDigits is a temporary list for the stack memory to keep track of history
+     * @param digits is the input list from which permutations are generated
+     */
+    private static void permutations(List&lt;Integer&gt; retList, List&lt;Integer&gt; tempDigits, List&lt;Integer&gt; digits)
+    {
+       /*
+        * We generate a list of pan-digital permutations,
+        * we push permutation once the required size has been attained,
+        * by combining the list and converting it to a single number
+        */
+        //Base condition is when required size is achieved
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        if(tempDigits.size() == digits.size())</span>
+        {
+<span class="nc" id="L100">           StringBuilder permFormation = new StringBuilder();</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">           for(int i:tempDigits)</span>
+           {
+<span class="nc" id="L103">               permFormation.append(i+&quot;&quot;);</span>
+<span class="nc" id="L104">           }</span>
+<span class="nc" id="L105">           retList.add(Integer.parseInt(permFormation.toString()));</span>
+<span class="nc" id="L106">        } </span>
+        else
+        {
+<span class="nc bnc" id="L109" title="All 2 branches missed.">           for(int i = 0; i &lt; digits.size(); i++)</span>
+           { 
+              //This is to avoid duplicates as we need only one of every digit
+<span class="nc bnc" id="L112" title="All 2 branches missed.">              if(tempDigits.contains(digits.get(i))) </span>
+<span class="nc" id="L113">                  continue; </span>
+              //We add the number if it's not present already
+<span class="nc" id="L115">              tempDigits.add(digits.get(i));</span>
+<span class="nc" id="L116">              permutations(retList, tempDigits, digits);</span>
+              //Recursively we remove the last element to substitute with a different element in the next recursive for loop
+<span class="nc" id="L118">              tempDigits.remove(tempDigits.size() - 1);</span>
+           }
+        }
+<span class="nc" id="L121">     } </span>
+     /**
+      * splitAndCheck checks if a particular permutation string can be split and if the splits are all prime
+      * @param permutation the given permutation string to check
+      * @param index Initial index of the string to check from
+      * @param prevVal is the previous split value to compare with
+      * @return the total number of splits which are possible with the given constraints
+      */
+     private static int splitAndCheck(String permutation, int index, int prevVal) {
+        /*
+         * The idea is to split them until the prefix is a prime,
+         * all splits are prime and no split is lesser than the previous split;
+         * We need a condition to check if all split combinations that we return are unique,
+         * hence we employ the condition to check if a split is always greater than the previous split.
+         * For example {2,5,47,631,89} is a valid split, but so is {2,5,47,89,631}. So we maintain only the increasing splits
+         */
+<span class="nc" id="L137">        int count = 0;</span>
+        //Run the entire algorithm until every character of the permutation
+<span class="nc bnc" id="L139" title="All 2 branches missed.">        for (int i = index; i &lt; permutation.length(); i++) </span>
+        { 
+            //Form the number until the previous index
+<span class="nc" id="L142">            int curr = Integer.parseInt(permutation.substring(index, i+1));</span>
+            /*
+             * Check if the current split is greater than the previous number and if it is a prime
+             * If either fails, we ignore further computations
+             */
+<span class="nc bnc" id="L147" title="All 4 branches missed.">            if(curr&gt;prevVal &amp;&amp; isPrimeNumber(curr))</span>
+            {
+                //This is the end base case suggesting we have utilized all numbers in the permutation
+                //We update the count since the current form of split satisfies the condition
+<span class="nc bnc" id="L151" title="All 2 branches missed.">                if(i == (permutation.length()-1)) </span>
+<span class="nc" id="L152">                    return count + 1;</span>
+                else
+                    //We continue recursion with the current value as the previous value
+<span class="nc" id="L155">                    count = count+splitAndCheck(permutation, i + 1, curr);</span>
+            }
+        }
+<span class="nc" id="L158">        return count;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
