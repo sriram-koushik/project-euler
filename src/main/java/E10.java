@@ -5,9 +5,6 @@
  */
 
 import utils.*;
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.List;
 
 /**
  *Class E10 is the class which consists of the main method

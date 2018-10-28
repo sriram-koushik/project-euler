@@ -1,10 +1,16 @@
+package utils;
+
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.List;
+
 /**
  * Class 'PrimeUtils' is a Utility class. 
  * @author Sriram
  * @version 1.0
  * This provides necessary utility functions for prime number computations
  */
-class PrimeUtils {
+public class PrimeUtils {
     //Upper bound until which prime numbers are computed
     private int upperBound; 
     //List to store the prime numbers until the upper bound value
@@ -20,7 +26,7 @@ class PrimeUtils {
      * Constructor for PrimeUtils
      * @param bound the highest value until which prime numbers are computed
      */
-    PrimeUtils(int bound)
+    public PrimeUtils(int bound)
     {
         /*
          * If the total upper bound is 0 or above, we create the list accordingly
@@ -40,7 +46,7 @@ class PrimeUtils {
      * @return
      * @throws Exception 
      */
-    long sumRange(int bound)
+    public long sumRange(int bound)
     {
         if(bound>upperBound)
         {
