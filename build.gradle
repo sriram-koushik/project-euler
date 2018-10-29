@@ -7,6 +7,10 @@
  */
 
 // Apply the java-library plugin to add support for Java Library
+plugins {
+  id "org.sonarqube" version "2.6"
+}
+
 apply plugin: 'java-library'
 
 apply plugin: 'jacoco'
@@ -17,7 +21,6 @@ repositories {
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
 }
-
 
 dependencies {
     // This dependency is exported to consumers, that is to say found on their compile classpath.
