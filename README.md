@@ -17,6 +17,10 @@ Coding standards
 
 Quality
 
+# Configuration Management
+
+Configuration Management
+
 # Continuous Integration
 
 Continuous Integration
