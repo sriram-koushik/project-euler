@@ -30,17 +30,17 @@ Then I figured a better approach would be to solve problems that might be releva
 
 # Coding standards
 
-1. Checkstyle: Used Checkstyle (http://checkstyle.sourceforge.net/) to conform to adhere to an industry coding standard
+1. Checkstyle: Used Checkstyle (http://checkstyle.sourceforge.net/) to conform to an industry coding standard
 
 2. SonarQube: Used SonarQube (https://www.sonarqube.org/) as the static analyzer for the project to identify and fix code smells and vulnerabilities
 
 # Build
 
-This project uses Gradle as means to build the project
+This project uses Gradle (https://gradle.org/) as the means to build the project
 
 # Continuous Integration
 
-This project has TravisCI configured which can build the project everytime a commit is made. This was necessary to run the other analysis scripts, test scripts automatically. We can always see the status of the build based on the latest commit here https://travis-ci.org/sriram-koushik/project-euler and in the badge [![Build Status](https://travis-ci.org/sriram-koushik/project-euler.svg?branch=master)](https://travis-ci.org/sriram-koushik/project-euler)
+This project has TravisCI (https://travis-ci.org/) configured which can build the project everytime a commit is made. This was necessary to run the other analysis scripts, test scripts automatically. We can always see the status of the build based on the latest commit here https://travis-ci.org/sriram-koushik/project-euler and in the badge [![Build Status](https://travis-ci.org/sriram-koushik/project-euler.svg?branch=master)](https://travis-ci.org/sriram-koushik/project-euler)
 
 
 # Quality
@@ -49,18 +49,19 @@ Defect Management:
 Using Github issue management to track and fix defects in the system
 
 Tests:
-1). Unit tests
-2). SonarQube static analyzer tests
+1. Unit tests: Wrote unit tests in JUnit
+
+2. Static analysis: Used SonarQube to run static analysis tests
 
 Test automation:
 All tests are currently automated. The tests are run everytime a commit is made. This is possible via JUnit, TravisCI and gradle scripts.
 
-Quality metrics:
+Coverage metrics:
 Have used http://codecov.io/ and https://www.eclemma.org/jacoco/ to automatically compute and display the code coverage and other relevant statistics, every commit. The code coverage results can be viewed at https://codecov.io/gh/sriram-koushik/project-euler or in the badge [![code coverage](https://codecov.io/gh/sriram-koushik/project-euler/branch/master/graph/badge.svg)](https://codecov.io/gh/sriram-koushik/project-euler)
 
 # Configuration Management
 
-Configuration Management usually relates to version management, naming conventions and code branch guidelines. Since this is a simple project with only 1 contributor, we maintain two types of branches:  
+Configuration Management usually relates to version management, naming conventions and code branch guidelines. Since this is a simple project with only one contributor, we maintain two types of branches:  
 master branch - Contains the most stable code
 issue#x branch - This issue branch is used to fix a particular issue and then merged with developer upon verifying the test cases
 A pull request is made to merge the issue branch to the master branch. This is to add traceability and an easy way to track issues.
