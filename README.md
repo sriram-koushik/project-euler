@@ -67,7 +67,8 @@ issue#x branch - This issue branch is used to fix a particular issue and then me
 # Estimation and Time Spent
 
 The total time spent for the project was tracked via Toggl (http://toggl.com/).The list of tasks are defined below
-**Task**|** Estimated**|** Actual**
+
+**Task**|**Estimated**|**Actual**
 :-----:|:-----:|:-----:
 ProblemSelection| 3h| 5h
 Gradle setup| 1h| 1h
