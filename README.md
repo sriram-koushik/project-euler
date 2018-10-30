@@ -91,7 +91,7 @@ Readme Markdown writeup| 3h| 4h
   https://projecteuler.net/problem=10
 
 <h2>Sample Output</h2>
-![alt text](https://goo.gl/SvUEGs "Output E10")
+[![](https://github.com/sriram-koushik/project-euler/blob/master/output/E10.PNG)]
 
 <h2>Reasons for choosing this problem</h2> 
 
