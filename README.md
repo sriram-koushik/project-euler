@@ -6,7 +6,7 @@ Solutions to the problems in the Project Euler problem set (http://projecteuler.
 # Quick start
 In order to get started and evaluate the solutions there are three approaches
 1. Checkout the project and build locally with `gradle build` and run individual classes
-2. Download the project, import in Eclipse and get it running
+2. Download the project, import in an IDE such as Eclipse as gradle project and get it running
 3. Download the files in https://github.com/sriram-koushik/project-euler/tree/master/src/main/java and run it locally
 
 # Choosing problems
@@ -26,12 +26,12 @@ public class RandomProblem
     }
 }
 ```
-Then I figured a better approach would be to solve problems that might be relevant to the Adobe Document Cloud team. So with a combination of these two, have currently solved #10, #41 and #118. 
+Then I figured a better approach would be to solve problems that might be relevant to the Adobe Document Cloud team. So with a combination of these two, chose to solve #10, #41 and #118. 
 
 # Coding standards
 
-1). Checkstyle: Have used Checkstyle (http://checkstyle.sourceforge.net/) to conform to adhere to an industry coding standard
-2). SonarQube: Have used SonarQube as the static analyzer for the project to identify and fix code smells and vulnerabilities
+1). Checkstyle: Used Checkstyle (http://checkstyle.sourceforge.net/) to conform to adhere to an industry coding standard
+2). SonarQube: Used SonarQube (https://www.sonarqube.org/) as the static analyzer for the project to identify and fix code smells and vulnerabilities
 
 # Build
 
@@ -52,17 +52,17 @@ Tests:
 2). SonarQube static analyzer tests
 
 Test automation:
-The tests are currently run automatically everytime a commit is made. This is possible via JUnit, TravisCI and gradle scripts.
+All tests are currently automated. The tests are run everytime a commit is made. This is possible via JUnit, TravisCI and gradle scripts.
 
 Quality metrics:
 Have used http://codecov.io/ and https://www.eclemma.org/jacoco/ to automatically compute and display the code coverage and other relevant statistics, every commit. The code coverage results can be viewed at https://codecov.io/gh/sriram-koushik/project-euler or in the badge [![code coverage](https://codecov.io/gh/sriram-koushik/project-euler/branch/master/graph/badge.svg)](https://codecov.io/gh/sriram-koushik/project-euler)
 
 # Configuration Management
 
-Configuration Management is handled by Github branching structure. Since this is a very simple project, there are three types of branches:
+Configuration Management usually relates to version management, naming conventions and code branch guidelines. Since this is a simple project with only 1 contributor, we maintain two types of branches:  
 master branch - Contains the most stable code
-developer branch - Contains any basic miscellaneous changes, features
 issue#x branch - This issue branch is used to fix a particular issue and then merged with developer upon verifying the test cases
+A pull request is made to merge the issue branch to the master branch. This is to add traceability and an easy way to track issues.
 
 # Estimation and Time Spent
 
@@ -84,6 +84,7 @@ Integeration| 1h| 1h
 SonarQube Integration| 1h| 1h
 Bug fixes| 5h| 2h
 Readme Markdown writeup| 3h| 4h
+**Total**|**30h**|**32h**
 
 # Problem E10
 <h2>Description</h2>
