@@ -85,13 +85,13 @@ SonarQube Integration| 1h| 1h
 Bug fixes| 5h| 2h
 Readme Markdown writeup| 3h| 4h
 
-# Problem 1 - E10
+# Problem E10
 <h2>Description</h2>
   Find the sum of all the primes below two million
   https://projecteuler.net/problem=10
 
 <h2>Sample Output</h2>
-  Output
+![alt text](https://goo.gl/SvUEGs "Output E10")
 
 <h2>Reasons for choosing this problem</h2> 
 
