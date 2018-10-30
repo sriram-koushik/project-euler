@@ -70,7 +70,7 @@ The total time spent for the project was tracked via Toggl (http://toggl.com/).T
 
 **Task**|**Estimated**|**Actual**
 :-----:|:-----:|:-----:
-ProblemSelection| 3h| 5h
+Problem Selection| 3h| 5h
 Gradle setup| 1h| 1h
 Travis CI setup| 2h| 1h
 JCoCo setup| 1h| 3h
@@ -96,17 +96,52 @@ Readme Markdown writeup| 3h| 4h
 <h2>Reasons for choosing this problem</h2> 
 Use of prime numbers in Cryptography and encoding is well known. Several cloud services offer ways to encode data before moving files to the cloud and Adobe document cloud embraces the security ideals of Adobe (https://www.adobe.com/security.html). In order to achieve several use cases, one of the core building blocks in generating prime numbers and using them as a key. So building a library which generates prime numbers efficiently becomes very important. So via this problem, I felt it would be interesting to create a base utility class which can generate a large number of prime numbers readily available for use. The other added challenge was computing the sum until 2 million which was interesting. Overall, the ideas was to create a reusable library for serveral core functionalities which can be improved upon based on the need. 
 <h2>Approaches and analysis</h2> 
-Identification of challenges:
+Naive approach:
 
+1. Identify whether a particular number is prime by checking if it has factors until its square root (because any two factors when multiplied should not be greater than the number, hence enough to check until the square root).
+
+2. Compute the sum for each of these prime numbers iteratively from 2 to 2000000.
+
+Identification of challenges with scale and areas of improvement:
+
+1. The number of prime numbers continuously grows exponentially with the range ```N/ln(N)```. Hence performing the naive approach these many times for every input costs time
+
+2. Computing the sum everytime now includes finding the list of primes until that point which increases latency
+
+3. There are several repeated computations in checking whether a number is prime. For example we know that 5 is prime. Now if we wanted to check if 625 is prime we need to check if numbers 2 to 25 are factors. We should not do this because we know that 5 times 25 is 625 and can never be a prime number.
 
 Solving challenges:
 
-Analysis:
-Analysed the efficient data structure which would encompass the two million numbers.
-Implemented using the Sieve of Eratosthenes for the efficient performance complexity
+1. Computing the list of primes until a given number in prior will mean that everytime the method to compute the sum is called, the list need not be recreated. This solves problems 1,2
 
-<h2>Overall Time spent</h2>
-__ minutes
+2. Use Sieve of Eratosthenes (https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) to create a sieve of multiples in prior so that we don't repeat computations 
+
+
+Current Approach:
+
+1. Create a sieve based on the upper limit (2000000 in this case)
+
+2. Create a list of prime numbers from the sieve
+
+3. Compute the sum until any given limit (2000000 in this case)
+
+Analysis:
+
+**Factor**|**Naive**|**Current approach**
+:-----:|:-----:|:-----:
+| Time Complexity| ```O(Nlog(N))``` | ```O(Nlog(log(N)))```
+| Space Complexity | ```O(N/log(N)``` | ```O(N)```
+| Averge time to run | NA | 45ms
+
+Overall Time spent:
+
+**Task**|**Time Spent**
+:-----:|:-----:
+| Code | 0.5h
+| Comments | 0.5h
+| Test cases | 1h
+| Fixing defects | 0.25h
+
 
 # Problem 2 - E41
 <h2>Description</h2>
@@ -124,7 +159,7 @@ Analysed the efficient data structure which would encompass the two million numb
 Implemented using the Sieve of Eratosthenes for the efficient performance complexity
 
 <h2>Overall Time spent</h2>
-__ minutes
+
 
 # Problem 3 - E118
 <h2>Description</h2>
