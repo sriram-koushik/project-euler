@@ -64,6 +64,17 @@ master branch - Contains the most stable code
 developer branch - Contains any basic miscellaneous changes, features
 issue#x branch - This issue branch is used to fix a particular issue and then merged with developer upon verifying the test cases
 
+# Estimation and Time Spent
+
+The total time spent for the project was tracked via Toggl (http://toggl.com/).The list of tasks are defined below
+| Task     | Estimated | Actual |
+| ---      | ---       | ---    |
+| Problem selection | 3h | 5h |
+| Gradle setup | 1h | 1h |
+| Travis CI setup  | 2h | 1h |
+| JCoCo setup | 1h | 3h |
+
+
 # Problem 1 - E10
 <h2>Description</h2>
   Find the sum of all the primes below two million
