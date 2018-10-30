@@ -91,12 +91,16 @@ Readme Markdown writeup| 3h| 4h
   https://projecteuler.net/problem=10
 
 <h2>Sample Output</h2>
-![](output/E10.png)
-
+<img src="output/E10.PNG"/>
 <h2>Reasons for choosing this problem</h2> 
-
+Use of prime numbers in Cryptography and encoding is well known. Several cloud services offer ways to encode data before moving files to the cloud and Adobe document cloud embraces the security ideals of Adobe (https://www.adobe.com/security.html). In order to achieve several use cases, one of the core building blocks in generating prime numbers and using them as a key. So building a library which generates prime numbers efficiently becomes very important. So via this problem, I felt it would be interesting to create a base utility class which can generate a large number of prime numbers readily available for use. The other added challenge was computing the sum until 2 million which was interesting. Overall, the ideas was to create a reusable library for serveral core functionalities which can be improved upon based on the need. 
 <h2>Approaches and analysis</h2> 
+Identification of challenges:
 
+
+Solving challenges:
+
+Analysis:
 Analysed the efficient data structure which would encompass the two million numbers.
 Implemented using the Sieve of Eratosthenes for the efficient performance complexity
 
