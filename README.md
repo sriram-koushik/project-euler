@@ -141,6 +141,7 @@ Overall Time spent:
 | Comments | 0.5h
 | Test cases | 1h
 | Fixing defects | 0.25h
+**Total**|**2.25h**
 
 
 # Problem 2 - E41
