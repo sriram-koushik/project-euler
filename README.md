@@ -86,6 +86,8 @@ Bug fixes| 5h| 2h
 Readme Markdown writeup| 3h| 4h
 **Total**|**30h**|**32h**
 
+# Problems
+
 # Euler Problem - 10
 <h2>Description</h2>
   Find the sum of all the primes below two million
@@ -203,51 +205,47 @@ Overall Time spent:
 
 # Euler Problem - 118
 <h2>Description</h2>
-  Find the sum of all the primes below two million
+  Find the total number of distinct sets containing each of the digits 1-9 exactly once contain only prime elements
   https://projecteuler.net/problem=118
 
 <h2>Sample Output</h2>
 <img src="output/E118.PNG"/>
 Numerical output: 44680
 <h2>Reasons for choosing this problem</h2> 
-Use of prime numbers in Cryptography and encoding is well known. Several cloud services offer ways to encode data before moving files to the cloud and Adobe document cloud embraces the security ideals of Adobe (https://www.adobe.com/security.html). In order to achieve several use cases, one of the core building blocks in generating prime numbers and using them as a key. So building a library which generates prime numbers efficiently becomes very important. So via this problem, I felt it would be interesting to create a base utility class which can generate a large number of prime numbers readily available for use. The other added challenge was computing the sum until 2 million which was interesting. Overall, the ideas was to create a reusable library for serveral core functionalities which can be improved upon based on the need. 
+I was looking for a tougher problem with matching levels of relevancy and found problem 118 to be apt. With problems 10, 41, we were able to compute prime numbers and pandigital numbers. This problem focuses on the combinatorics part of how various sets with different subset lengths can be created with all elements in the set being prime. This is very useful in evaluating the strength of a key in an encryption system. For example, we know number of prime numbers under a value ```K``` to be approximately ```N/ln(N)```. So if a given number is a pandigital 10 digit number (whose total possible types is 9!), what's the probability and expected value (EV) of splitting them so that all splits are prime numbers. With this value, several factors of a number can be analyzed.
+
 <h2>Approaches and analysis</h2> 
 Naive approach:
 
-1. Identify whether a particular number is prime by checking if it has factors until its square root (because any two factors when multiplied should not be greater than the number, hence enough to check until the square root).
+1. Generate all prime numbers, combine them in all possible ways 
 
-2. Compute the sum for each of these prime numbers iteratively from 2 to 2000000.
+2. Check if each possible combination is pandigital
 
 Identification of challenges with scale and areas of improvement:
 
-1. The number of prime numbers continuously grows exponentially with the range ```N/ln(N)```. Hence performing the naive approach these many times for every input costs time
+1. The number of prime numbers until 987654321 is extremly high (47712769)
 
-2. Computing the sum everytime now includes finding the list of primes until that point which increases latency
-
-3. There are several repeated computations in checking whether a number is prime. For example we know that 5 is prime. Now if we wanted to check if 625 is prime we need to check if numbers 2 to 25 are factors. We should not do this because we know that 5 times 25 is 625 and can never be a prime number.
+2. Combining these prime numbers in all possible ways will result in an extremely high number of combinations 2^47712769 + 3^(47712769) + 4^(47712769)... and so on. This can be reduced to avoid duplicates. But still the number is very high. Day to day servers with basic configuration can never handle this.
 
 Solving challenges:
 
-1. Computing the list of primes until a given number in prior will mean that everytime the method to compute the sum is called, the list need not be recreated. This solves problems 1,2
+1. Instead of combining all prime numbers, we generate all combinations of 9 digit pandigital numbers and check if a valid split is possible
 
-2. Use Sieve of Eratosthenes (https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) to create a sieve of multiples in prior so that we don't repeat computations 
-
+2. Since the number of splits posssible in a 9 digit number is only 8! (40320), that's a comparitively lesser number of subsets to check for
 
 Current Approach:
 
-1. Create a sieve based on the upper limit (2000000 in this case)
-
-2. Create a list of prime numbers from the sieve
-
-3. Compute the sum until any given limit (2000000 in this case)
+Create combinations of 9 digit pandigital numbers and split them in all possible ways and check if all subsets are prime
 
 Analysis:
 
-**Factor**|**Naive**|**Current approach**
-:-----:|:-----:|:-----:
-| Time Complexity| ```O(Nlog(N))``` | ```O(Nlog(log(N)))```
-| Space Complexity | ```O(N/log(N)``` | ```O(N)```
-| Averge time to run | NA | 45ms
+**Factor**|**Current approach**
+:-----:|:-----:
+| Time Complexity| ```O(N!/(K!(n-k)!))```
+| Space Complexity | ```O(1)```
+| Averge time to run | 45ms
+
+Here N refers to the size of the digits (9 in this case), K refers to the number of elements to pick (1 through 9). The N!/(K!(N-K)!) is the total possible number of combinations. Though this is done for varying number of K, it's a multiplier constant to the complexity where the constant is very small (<9)
 
 Overall Time spent:
 
@@ -258,3 +256,4 @@ Overall Time spent:
 | Test cases | 1h
 | Fixing defects | 0.25h
 **Total**|**2.25h**
+
