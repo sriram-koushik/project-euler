@@ -45,18 +45,18 @@ This project has TravisCI (https://travis-ci.org/) configured which can build th
 
 ## Quality
 
-Defect Management: 
+### Defect Management: 
 Using Github issue management to track and fix defects in the system
 
-Tests:
-1. Unit tests: Wrote unit tests in JUnit
+### Tests:
+1. <b>Unit tests:</b> Wrote unit tests in JUnit
 
-2. Static analysis: Used SonarQube to run static analysis tests
+2. <b>Static analysis:</b> Used SonarQube to run static analysis tests
 
-Test automation:
+### Test automation:
 All tests are currently automated. The tests are run everytime a commit is made. This is possible via JUnit, TravisCI and gradle scripts.
 
-Coverage metrics:
+### Coverage metrics:
 Have used http://codecov.io/ and https://www.eclemma.org/jacoco/ to automatically compute and display the code coverage and other relevant statistics, every commit. The code coverage results can be viewed at https://codecov.io/gh/sriram-koushik/project-euler or in the badge [![code coverage](https://codecov.io/gh/sriram-koushik/project-euler/branch/master/graph/badge.svg)](https://codecov.io/gh/sriram-koushik/project-euler)
 
 ## Configuration Management
@@ -143,7 +143,7 @@ Use of prime numbers in Cryptography and encoding is well known. Several cloud s
 | Space Complexity | ```O(N/log(N)``` | ```O(N)```
 | Averge time to run | NA | 45ms
 
-### Overall Time spent:
+### Overall Time spent
 
 **Task**|**Time Spent**
 :-----:|:-----:
@@ -201,7 +201,7 @@ Generate n digit pandigital combinations in non-increasing order and check if th
 
 Here ```N``` is the largest possible number which is 987654321 and the maximum value is ```K``` is 9! = 362880 
 
-### Overall Time spent:
+### Overall Time spent
 
 **Task**|**Time Spent**
 :-----:|:-----:
@@ -221,34 +221,34 @@ Here ```N``` is the largest possible number which is 987654321 and the maximum v
 
 Numerical output: 44680
 
-### Reasons for choosing this problem
+### Reasons for choosing this problem:
 I was looking for a tougher problem with matching levels of relevancy and found problem 118 to be apt. With problems 10, 41, we were able to compute prime numbers and pandigital numbers. This problem focuses on the combinatorics part of how various sets with different subset lengths can be created with all elements in the set being prime. This is very useful in evaluating the strength of a key in an encryption system. For example, we know number of prime numbers under a value ``` K ``` to be approximately ``` N/ln(N) ```. So if a given number is a pandigital 10 digit number (whose total possible types is 9!), what's the probability and expected value (EV) of splitting them so that all splits are prime numbers. With this value, several factors of a number can be analyzed.
 
 ### Approaches and analysis
 
-#### Naive approach
+#### Naive approach:
 
 1. Generate all prime numbers, combine them in all possible ways 
 
 2. Check if each possible combination is pandigital
 
-#### Identification of challenges with scale and areas of improvement
+#### Identification of challenges with scale and areas of improvement:
 
 1. The number of prime numbers until 987654321 is extremly high (47712769)
 
 2. Combining these prime numbers in all possible ways will result in an extremely high number of combinations ``` 2^47712769 + 3^(47712769) + 4^(47712769)... ``` and so on. This can be reduced to avoid duplicates. But still the number is very high. Day to day servers with basic configuration can never handle this.
 
-#### Solving challenges
+#### Solving challenges:
 
 1. Instead of combining all prime numbers, we generate all combinations of 9 digit pandigital numbers and check if a valid split is possible
 
 2. Since the number of splits posssible in a 9 digit number is only 8! (40320), that's a comparitively lesser number of subsets to check for
 
-#### Current Approach
+#### Current Approach:
 
 Create combinations of 9 digit pandigital numbers and split them in all possible ways and check if all subsets are prime
 
-#### Analysis
+#### Analysis:
 
 **Factor**|**Current approach**
 :-----:|:-----:
@@ -258,7 +258,7 @@ Create combinations of 9 digit pandigital numbers and split them in all possible
 
 Here N refers to the size of the digits (9 in this case), K refers to the number of elements to pick (1 through 9). The N!/(K!(N-K)!) is the total possible number of combinations. Though this is done for varying number of K, it's a multiplier constant to the complexity where the constant is very small (<9)
 
-### Overall Time spent:
+### Overall Time spent
 
 **Task**|**Time Spent**
 :-----:|:-----:
