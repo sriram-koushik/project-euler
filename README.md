@@ -30,8 +30,9 @@ Then I figured a better approach would be to solve problems that might be releva
 
 # Coding standards
 
-1). Checkstyle: Used Checkstyle (http://checkstyle.sourceforge.net/) to conform to adhere to an industry coding standard
-2). SonarQube: Used SonarQube (https://www.sonarqube.org/) as the static analyzer for the project to identify and fix code smells and vulnerabilities
+1. Checkstyle: Used Checkstyle (http://checkstyle.sourceforge.net/) to conform to adhere to an industry coding standard
+
+2. SonarQube: Used SonarQube (https://www.sonarqube.org/) as the static analyzer for the project to identify and fix code smells and vulnerabilities
 
 # Build
 
