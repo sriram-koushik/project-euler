@@ -49,7 +49,7 @@ Using Github issue management to track and fix defects in the system
 
 Tests:
 1). Unit tests
-2). SonarQube static analyzer defects
+2). SonarQube static analyzer tests
 
 Test automation:
 The tests are currently run automatically everytime a commit is made. This is possible via JUnit, TravisCI and gradle scripts.
