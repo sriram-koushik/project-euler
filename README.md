@@ -67,23 +67,22 @@ issue#x branch - This issue branch is used to fix a particular issue and then me
 # Estimation and Time Spent
 
 The total time spent for the project was tracked via Toggl (http://toggl.com/).The list of tasks are defined below
-**Task**|**Estimated**|**Actual**
+**Task**|** Estimated**|** Actual**
 :-----:|:-----:|:-----:
-Problem selection|3h|5h
-Gradle setup|1h|1h
-Travis CI setup|2h|1h
-JCoCo setup|1h|3h
-#E10 implementation|2h|2h
-#E10 test|1h|1.5h
-#E41 implementation|3h|2h
-#E41 test|1h|1.5h
-#E118 implementation|2h|1h
-#E118 test|.5h|1h
-Integeration|1h|1h
-SonarQube Integration|1h|1h
-Bug fixes|5h|2h
-Readme Markdown writeup|3h|4h
-
+ProblemSelection| 3h| 5h
+Gradle setup| 1h| 1h
+Travis CI setup| 2h| 1h
+JCoCo setup| 1h| 3h
+E10 implementation| 2h| 2h
+E10 test| 1h| 1.5h
+E41 implementation| 3h| 2h
+E41 test| 1h| 1.5h
+E118 implementation| 2h| 1h
+E118 test| .5h| 1h
+Integeration| 1h| 1h
+SonarQube Integration| 1h| 1h
+Bug fixes| 5h| 2h
+Readme Markdown writeup| 3h| 4h
 
 # Problem 1 - E10
 <h2>Description</h2>
