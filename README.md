@@ -30,7 +30,7 @@ Then I figured a better approach would be to solve problems that might be releva
 
 ## Coding standards
 
-1. Checkstyle: Used Checkstyle (http://checkstyle.sourceforge.net/) to conform to an industry coding standard
+1. Checkstyle: Used Checkstyle (http://checkstyle.sourceforge.net/) to conform to an industry coding standard which uses the Google Styling guide https://google.github.io/styleguide/javaguide.html
 
 2. SonarQube: Used SonarQube (https://www.sonarqube.org/) as the static analyzer for the project to identify and fix code smells and vulnerabilities
 
@@ -68,25 +68,25 @@ A pull request is made to merge the issue branch to the master branch. This is t
 
 ## Estimation and Time Spent
 
-The total time spent for the project was tracked via Toggl (http://toggl.com/).The list of tasks are defined below
+The total time spent for the project was tracked via Toggl (http://toggl.com/) .The list of tasks are defined below
 
 **Task**|**Estimated**|**Actual**
 :-----:|:-----:|:-----:
-Problem Selection| 3h| 5h
+Problem Selection| 3h| 4.5h
 Gradle setup| 1h| 1h
 Travis CI setup| 2h| 1h
 JCoCo setup| 1h| 3h
-E10 implementation| 2h| 2h
-E10 test| 1h| 1.5h
-E41 implementation| 3h| 2h
+E10 implementation| 2h| 1h
+E10 test| 1h| 0.75h
+E41 implementation| 3h| 1h
 E41 test| 1h| 1.5h
 E118 implementation| 2h| 1h
-E118 test| .5h| 1h
+E118 test| 0.5h| 1h
 Integeration| 1h| 1h
 SonarQube Integration| 1h| 1h
-Bug fixes| 5h| 2h
+Bug fixes| 5h| 3h
 Readme Markdown writeup| 3h| 4h
-**Total**|**30h**|**32h**
+**Total**|**26.5h**|**24.75h**
 
 # Problems
 
@@ -149,9 +149,9 @@ Use of prime numbers in Cryptography and encoding is well known. Several cloud s
 :-----:|:-----:
 | Code | 0.5h
 | Comments | 0.5h
-| Test cases | 1h
+| Test cases | 0.5h
 | Fixing defects | 0.25h
-**Total**|**2.25h**
+**Total**|**1.75h**
 
 
 ## Euler Problem - 41
@@ -208,8 +208,8 @@ Here ```N``` is the largest possible number which is 987654321 and the maximum v
 | Code | 0.5h
 | Comments | 0.5h
 | Test cases | 1h
-| Fixing defects | 0.25h
-**Total**|**2.25h**
+| Fixing defects | 0.5h
+**Total**|**2.5h**
 
 ## Euler Problem - 118
 ### Description
@@ -264,7 +264,7 @@ Here N refers to the size of the digits (9 in this case), K refers to the number
 :-----:|:-----:
 | Code | 0.5h
 | Comments | 0.5h
-| Test cases | 1h
-| Fixing defects | 0.25h
-**Total**|**2.25h**
+| Test cases | 0.5h
+| Fixing defects | 0.5h
+**Total**|**2.50h**
 
