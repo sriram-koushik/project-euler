@@ -117,14 +117,14 @@ public class PrimeUtilsTest {
   public void instantiate1() throws Exception {
     int upperBound = Integer.MAX_VALUE + 1;
     new PrimeUtils(upperBound);
-    assertEquals(ValueStrings.outBoundError + "\r\n", errStreamByte.toString());
+    assertEquals(errStreamByte.toString().contains(ValueStrings.outBoundError), true);
   }
 
   @Test
   public void instantiate2() throws Exception {
     int upperBound = Integer.MAX_VALUE;
     new PrimeUtils(upperBound);
-    assertEquals(ValueStrings.outBoundError + "\r\n", errStreamByte.toString());
+    assertEquals(errStreamByte.toString().contains(ValueStrings.outBoundError), true);
   }
 
   @Test
