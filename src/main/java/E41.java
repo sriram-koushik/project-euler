@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import utils.GeneralUtils;
+import values.ValueStrings;
+
 /**
  * Class E41 is the class which consists of the main method.
  */
@@ -15,8 +18,7 @@ class E41 {
   /**
    * Main static method for the class.
    * 
-   * @param args
-   *            Command line arguments for the main method
+   * @param args Command line arguments for the main method
    */
   public static void main(String[] args) {
     long startTime = System.currentTimeMillis();
@@ -50,12 +52,11 @@ class E41 {
          * after removing the digits.size()-length elements from the
          * front
          */
-        permutations(perms, new ArrayList<Integer>(),
-            digits.subList(digits.size() - length, digits.size()));
+        GeneralUtils.permutations(perms, digits.subList(digits.size() - length, digits.size()));
         // 'perms' now contain all pan-digital permutations of size
         // length
         for (int perm : perms) {
-          if (isPrimeNumber(perm)) {
+          if (GeneralUtils.isPrimeNumber(perm)) {
             longestPdp = perm;
             break;
           }
@@ -65,72 +66,19 @@ class E41 {
         }
       }
       if (longestPdp != -1) {
-        System.out.println("The longest pan digital number is "
+        System.out.println(ValueStrings.longestPandigitalNotif
             + longestPdp);
       } else {
         System.out
-          .println("There's no pandigital numbers which are prime");
+          .println(ValueStrings.noPandigitalNotif);
       }
     } catch (Exception e) {
-      System.out.println("There's an error in the processing"
+      System.out.println(ValueStrings.processingError
           + e.getStackTrace());
     }
     long endTime = System.currentTimeMillis();
-    System.out.println("This program took " + (endTime - startTime)
-        + "ms to run");
+    System.out.println(ValueStrings.timeTakenNotif1 + (endTime - startTime)
+        + ValueStrings.timeTakenNotif2);
   }
 
-  private static boolean isPrimeNumber(int num) {
-    // It is enough we check if there are factors for a number until the
-    // Square Root of that number
-    /*
-     * We are checking for every number instead of using a sieve because
-     * this is far efficient than creating a sieve for 987654321 numbers
-     * Here we will compute this only for a maximum of 9! = 362880 numbers
-     */
-    int boundary = (int) Math.floor(Math.sqrt(num));
-    if (num <= 1) {
-      return false;
-    }
-    if (num == 2) {
-      return true;
-    }
-    for (int i = 2; i <= boundary; ++i) {
-      if (num % i == 0) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  private static void permutations(List<Integer> retList,
-      List<Integer> tempDigits, List<Integer> digits) {
-    /*
-     * We generate a list of pan-digital permutations, we push permutation
-     * once the required size has been attained, by combining the list and
-     * converting it to a single number
-     */
-    // Base condition is when required size is achieved
-    if (tempDigits.size() == digits.size()) {
-      StringBuilder permFormation = new StringBuilder();
-      for (int i : tempDigits) {
-        permFormation.append(i + "");
-      }
-      retList.add(Integer.parseInt(permFormation.toString()));
-    } else {
-      for (int i = 0; i < digits.size(); i++) {
-        // This is to avoid duplicates as we need only one of every
-        // digit
-        if (tempDigits.contains(digits.get(i))) {
-          continue;
-        }
-        // We add the number if it's not present already
-        tempDigits.add(digits.get(i));
-        permutations(retList, tempDigits, digits);
-        // Recursively we remove the last element to substitute with a
-        // different element in the next recursive for loop
-        tempDigits.remove(tempDigits.size() - 1);
-      }
-    }
-  }
 }

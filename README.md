@@ -86,7 +86,8 @@ Integeration| 1h| 1h
 SonarQube Integration| 1h| 1h
 Bug fixes| 5h| 3h
 Readme Markdown writeup| 3h| 4h
-**Total**|**26.5h**|**24.75h**
+Utilities test| 0h| 2h
+**Total**|**26.5h**|**26.75h**
 
 # Problems
 

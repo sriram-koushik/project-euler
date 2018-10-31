@@ -1,7 +1,7 @@
 /**
  * @author Sriram
  * @version 1.0
- * Test file for class E10
+ * Test file for class E118
  */
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertEquals;
@@ -9,14 +9,17 @@ import static org.junit.Assert.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import values.ValueStrings;
 
-public class E10Test {
+public class E118Test {
+  @Rule
+  public ExpectedException thrown = ExpectedException.none();
   /*
    * Streams declaration for checking console output
    */
@@ -35,7 +38,7 @@ public class E10Test {
   }
 
   /*
-   * Restore the various streams
+   * Close the opened streams
    */
   @After
   public void restoreStreams() {
@@ -48,28 +51,28 @@ public class E10Test {
    */
   @Test
   public void instantiation1() throws Exception {
-    E10.main(new String[] {});
-    assertEquals(outStreamByte.toString().contains(ValueStrings.sumUntilNotif), true);
+    E118.main(new String[] {});
+    assertEquals(outStreamByte.toString().contains(ValueStrings.pdigitalPrimeSetNotif), true);
     assertEquals(outStreamByte.toString().contains(ValueStrings.timeTakenNotif1), true);
   }
 
   @Test
   public void instantiation2() throws Exception {
-    E10 target = new E10();
+    E118 target = new E118();
     assertThat(target, notNullValue());
   }
 
   @Test
   public void instantiation3() throws Exception {
     String[] args = new String[] {};
-    E10.main(args);
+    E118.main(args);
   }
-  
+
   /*
    * Type checking test for null
    */
   @Test
   public void type() throws Exception {
-    assertThat(E10.class, notNullValue());
+    assertThat(E118.class, notNullValue());
   }
 }
