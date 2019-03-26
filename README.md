@@ -11,7 +11,7 @@ In order to get started and evaluate the solutions there are three approaches
 
 ## Choosing problems
 
-I had two approaches in choosing the problems. Honestly, this was the most difficult part of the exercise. The first approach I had was selecting problems randomly. I used the following code to randomly choose three problems:
+I had two approaches while choosing the problems. Honestly, this was the most difficult part of the exercise. The first approach I had was selecting problems randomly. I used the following code to randomly choose three problems:
 
 ```
 import java.util.Random;
